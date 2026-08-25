@@ -61,10 +61,16 @@
     max-width:560px;
   }
 
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:36px;
+  }
   .mark{
-    width:64px;
-    height:64px;
-    margin-bottom:28px;
+    width:40px;
+    height:40px;
+    flex-shrink:0;
   }
   .mark path{
     stroke:var(--hivis);
@@ -84,6 +90,16 @@
   @keyframes draw{ to{ stroke-dashoffset:0; } }
   @keyframes dot-in{ from{opacity:0; transform:scale(0);} to{opacity:1; transform:scale(1);} }
 
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:28px;
+    letter-spacing:-0.01em;
+    color:var(--white);
+    opacity:0;
+    animation:fade-up 0.5s 1.05s ease forwards;
+  }
+
   .eyebrow{
     font-family:var(--font-mono);
     font-size:12px;
@@ -92,7 +108,7 @@
     text-transform:uppercase;
     color:var(--slate-light);
     opacity:0;
-    animation:fade-up 0.6s 1.3s ease forwards;
+    animation:fade-up 0.6s 1.35s ease forwards;
   }
 
   h1{
@@ -103,7 +119,7 @@
     letter-spacing:-0.01em;
     margin-top:16px;
     opacity:0;
-    animation:fade-up 0.6s 1.42s ease forwards;
+    animation:fade-up 0.6s 1.47s ease forwards;
   }
   h1 span{color:var(--hivis);}
 
@@ -115,7 +131,7 @@
     margin-top:16px;
     max-width:420px;
     opacity:0;
-    animation:fade-up 0.6s 1.54s ease forwards;
+    animation:fade-up 0.6s 1.59s ease forwards;
   }
 
   @keyframes fade-up{
@@ -129,7 +145,28 @@
     background:var(--line-dark);
     margin:32px 0;
     opacity:0;
-    animation:fade-up 0.6s 1.66s ease forwards;
+    animation:fade-up 0.6s 1.71s ease forwards;
+  }
+
+  .tagline{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:-0.01em;
+    color:var(--white);
+    margin-bottom:20px;
+    opacity:0;
+    animation:fade-up 0.6s 1.83s ease forwards;
+  }
+  .tagline::before{
+    content:"";
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:var(--hivis);
+    border-radius:1px;
+    margin-right:9px;
+    transform:translateY(-1px);
   }
 
   .contact{
@@ -137,7 +174,7 @@
     font-size:13px;
     letter-spacing:0.03em;
     opacity:0;
-    animation:fade-up 0.6s 1.78s ease forwards;
+    animation:fade-up 0.6s 1.95s ease forwards;
   }
   .contact a{
     color:var(--white);
@@ -168,11 +205,11 @@
     letter-spacing:0.08em;
     color:var(--line-dark);
     opacity:0;
-    animation:fade-up 0.6s 1.9s ease forwards;
+    animation:fade-up 0.6s 2.07s ease forwards;
   }
 
   @media (prefers-reduced-motion: reduce){
-    .mark path, .mark circle, .eyebrow, h1, p.sub, .divider, .contact, footer{
+    .mark path, .mark circle, .eyebrow, h1, p.sub, .divider, .tagline, .contact, footer{
       animation:none !important;
       opacity:1 !important;
       stroke-dashoffset:0 !important;
@@ -184,21 +221,26 @@
 <body>
 
   <div class="content">
-    <svg class="mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M4 32 L4 22 Q4 16 10 16 L22 16 Q28 16 28 10 L28 6"/>
-      <circle cx="28" cy="4" r="4.5"/>
-    </svg>
+    <div class="logo">
+      <svg class="mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 32 L4 22 Q4 16 10 16 L22 16 Q28 16 28 10 L28 6"/>
+        <circle cx="28" cy="4" r="4.5"/>
+      </svg>
+      <span class="wordmark">Flowify</span>
+    </div>
 
-    <span class="eyebrow">Flowify New Zealand</span>
-    <h1>Something new is<br>being built<span>.</span></h1>
-    <p class="sub">We're setting up the systems behind Flowify. Flowify sets up and manages the systems that run your trade business — Jobber scheduling, Xero syncing, and a 24/7 AI receptionist that answers every call, even when you're up a ladder. Built for NZ plumbers, electricians, builders and HVAC teams . Back soon.</p>
+    <span class="eyebrow">Coming Soon</span>
+    <h1>Stay on the tools.<br>We'll handle the tech<span>.</span></h1>
+    <p class="sub">Flowify implements and manages the software your trade business runs on — so you don't have to.<br>Built for NZ plumbers, electricians, builders and HVAC teams.</p>
 
     <div class="divider"></div>
+
+    <p class="tagline">Flowify. Never miss a job.</p>
 
     <p class="contact">Get in touch — <a href="mailto:hello@flowify.nz">hello@flowify.nz</a></p>
   </div>
 
-  <footer>Flowify New Zealand</footer>
+  <footer>FLOWIFY NZ</footer>
 
 </body>
 </html>
