@@ -1,1 +1,248 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowify — Coming Soon</title>
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<meta name="description" content="Flowify — job intake, scheduling and admin, sorted for NZ trade businesses. Site launching soon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#151A22;
+    --paper:#EEF0F1;
+    --white:#FFFFFF;
+    --hivis:#FF6A13;
+    --slate-light:#8A93A1;
+    --line-dark:#2B313D;
+    --font-display:'Space Grotesk', system-ui, sans-serif;
+    --font-body:'Inter', system-ui, sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    font-family:var(--font-body);
+    background:var(--ink);
+    color:var(--white);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding:32px;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* faint grid texture, workwear/technical feel */
+  body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line-dark) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line-dark) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.28;
+    mask-image:radial-gradient(ellipse at center, #000 0%, transparent 72%);
+    -webkit-mask-image:radial-gradient(ellipse at center, #000 0%, transparent 72%);
+  }
+
+  .content{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    max-width:560px;
+  }
+
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:36px;
+  }
+  .mark{
+    width:40px;
+    height:40px;
+    flex-shrink:0;
+  }
+  .mark path{
+    stroke:var(--hivis);
+    stroke-width:5;
+    fill:none;
+    stroke-linecap:round;
+    stroke-dasharray:70;
+    stroke-dashoffset:70;
+    animation:draw 1.1s 0.15s cubic-bezier(.65,0,.35,1) forwards;
+  }
+  .mark circle{
+    fill:var(--hivis);
+    opacity:0;
+    transform-origin:center;
+    animation:dot-in 0.4s 1.1s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @keyframes dot-in{ from{opacity:0; transform:scale(0);} to{opacity:1; transform:scale(1);} }
+
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:28px;
+    letter-spacing:-0.01em;
+    color:var(--white);
+    opacity:0;
+    animation:fade-up 0.5s 1.05s ease forwards;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--slate-light);
+    opacity:0;
+    animation:fade-up 0.6s 1.35s ease forwards;
+  }
+
+  h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(30px, 6vw, 46px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin-top:16px;
+    opacity:0;
+    animation:fade-up 0.6s 1.47s ease forwards;
+  }
+  h1 span{color:var(--hivis);}
+
+  p.sub{
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    color:#C7CDD7;
+    margin-top:16px;
+    max-width:420px;
+    opacity:0;
+    animation:fade-up 0.6s 1.59s ease forwards;
+  }
+
+  @keyframes fade-up{
+    from{opacity:0; transform:translateY(8px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .divider{
+    width:36px;
+    height:1px;
+    background:var(--line-dark);
+    margin:32px 0;
+    opacity:0;
+    animation:fade-up 0.6s 1.71s ease forwards;
+  }
+
+  .tagline{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:-0.01em;
+    color:var(--white);
+    margin-bottom:20px;
+    opacity:0;
+    animation:fade-up 0.6s 1.83s ease forwards;
+  }
+  .tagline::before{
+    content:"";
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:var(--hivis);
+    border-radius:1px;
+    margin-right:9px;
+    transform:translateY(-1px);
+  }
+
+  .contact{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.03em;
+    opacity:0;
+    animation:fade-up 0.6s 1.95s ease forwards;
+  }
+  .contact a{
+    color:var(--white);
+    text-decoration:none;
+    border-bottom:1px solid var(--hivis);
+    padding-bottom:2px;
+    transition:color 0.15s ease, border-color 0.15s ease;
+  }
+  .contact a:hover,
+  .contact a:focus-visible{
+    color:var(--hivis);
+    border-color:var(--white);
+  }
+  .contact a:focus-visible{
+    outline:2px solid var(--hivis);
+    outline-offset:4px;
+    border-radius:2px;
+  }
+
+  footer{
+    position:absolute;
+    bottom:28px;
+    left:0;
+    right:0;
+    text-align:center;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--line-dark);
+    opacity:0;
+    animation:fade-up 0.6s 2.07s ease forwards;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .mark path, .mark circle, .eyebrow, h1, p.sub, .divider, .tagline, .contact, footer{
+      animation:none !important;
+      opacity:1 !important;
+      stroke-dashoffset:0 !important;
+      transform:none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="content">
+    <div class="logo">
+      <svg class="mark" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4 32 L4 22 Q4 16 10 16 L22 16 Q28 16 28 10 L28 6"/>
+        <circle cx="28" cy="4" r="4.5"/>
+      </svg>
+      <span class="wordmark">Flowify</span>
+    </div>
+
+    <span class="eyebrow">Coming Soon</span>
+    <h1>Stay on the tools.<br>We'll handle the tech<span>.</span></h1>
+    <p class="sub">Flowify implements and manages the software your trade business runs on, so you don't have to.<br>Built for New Zealand plumbers, electricians, builders and home services teams.</p>
+
+    <div class="divider"></div>
+
+    <p class="tagline">Flowify. Never miss another job.</p>
+
+    <p class="contact">Get in touch — <a href="mailto:hello@flowify.nz">hello@flowify.nz</a></p>
+  </div>
+
+  <footer>Flowify New Zealand Ltd</footer>
 <elevenlabs-convai agent-id="agent_2101m275fv5af769d6pnpth2dwv3"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+</body>
+</html>
